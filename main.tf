@@ -1,9 +1,33 @@
 # Copyright Amazon.com, Inc. or its affiliates. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
+provider "aws" {
+  region = "us-east-1"  # Specify your desired AWS region
+ 
+}
+
 module "packaging" {
   source = "./modules/aft-archives"
 }
+
+
+module "aft" {
+  source = "github.com/aws-ia/terraform-aws-control_tower_account_factory"
+  # Required Vars
+  ct_management_account_id    = "251074840806"
+  log_archive_account_id      = "798421612345"
+  audit_account_id            = "867447260911"
+  aft_management_account_id   = "539247486673"
+  ct_home_region              = "us-east-1"
+  tf_backend_secondary_region = "us-west-2"
+  # VCS Vars
+  vcs_provider                                  = "github"
+  account_request_repo_name                     = "itayshafir/learn-terraform-aft-account-request"
+  account_provisioning_customizations_repo_name = "itayshafir/learn-terraform-aft-account-provisioning-customizations"
+  global_customizations_repo_name               = "itayshafir/learn-terraform-aft-global-customizations"
+  account_customizations_repo_name              = "itayshafir/learn-terraform-aft-account-customizations"
+}
+
 
 module "aft_account_provisioning_framework" {
   providers = {

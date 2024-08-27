@@ -1,6 +1,8 @@
 # Copyright Amazon.com, Inc. or its affiliates. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 #
+
+
 provider "aws" {
   alias  = "ct_management"
   region = var.ct_home_region

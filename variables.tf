@@ -6,7 +6,8 @@
 #########################################
 variable "ct_management_account_id" {
   description = "Control Tower Management Account Id"
-  type        = string
+  default=   "251074840806"
+    type        = string
   validation {
     condition     = can(regex("^\\d{12}$", var.ct_management_account_id))
     error_message = "Variable var: ct_management_account_id is not valid."
@@ -15,6 +16,8 @@ variable "ct_management_account_id" {
 variable "log_archive_account_id" {
   description = "Log Archive Account Id"
   type        = string
+  default    = "798421612345"
+ 
   validation {
     condition     = can(regex("^\\d{12}$", var.log_archive_account_id))
     error_message = "Variable var: log_archive_account_id is not valid."
@@ -23,6 +26,8 @@ variable "log_archive_account_id" {
 variable "audit_account_id" {
   description = "Audit Account Id"
   type        = string
+   default            = "867447260911"
+ 
   validation {
     condition     = can(regex("^\\d{12}$", var.audit_account_id))
     error_message = "Variable var: audit_account_id is not valid."
@@ -45,13 +50,14 @@ variable "aft_framework_repo_url" {
 
 variable "aft_framework_repo_git_ref" {
   description = "Git branch from which the AFT framework should be sourced from"
-  default     = null
+  default     = "main"
   type        = string
 }
 
 variable "aft_management_account_id" {
   description = "AFT Management Account ID"
   type        = string
+  default="539247486673"
   validation {
     condition     = can(regex("^\\d{12}$", var.aft_management_account_id))
     error_message = "Variable var: aft_management_account_id is not valid."
@@ -61,6 +67,7 @@ variable "aft_management_account_id" {
 variable "ct_home_region" {
   description = "The region from which this module will be executed. This MUST be the same region as Control Tower is deployed."
   type        = string
+  default="us-east-1"
   validation {
     condition     = can(regex("(us(-gov)?|ap|ca|cn|eu|sa|me|af|il)-(central|(north|south)?(east|west)?)-\\d", var.ct_home_region))
     error_message = "Variable var: region is not valid."
